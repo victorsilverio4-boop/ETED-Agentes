@@ -1251,7 +1251,7 @@ async function sendMessage() {
     // Dynamic max_tokens capped by remaining budget
     const dynamicMax = Math.min(MAX_TOKENS_PER_RESPONSE, remaining);
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
