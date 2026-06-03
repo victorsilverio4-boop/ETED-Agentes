@@ -171,7 +171,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);
   </div>
 </div>
 
-<div id="slim"><div class="slim-c"><div class="slim-i">⚡</div><div class="slim-t">Sesión agotada</div><div class="slim-d">Alcanzaste el límite de <strong>10,000 tokens</strong> para esta sesión.<br><br>Contacta al administrador para acceso renovado.</div></div></div>
+<div id="slim"><div class="slim-c"><div class="slim-i">⚡</div><div class="slim-t">Sesión agotada</div><div class="slim-d">Alcanzaste el límite de <strong>30,000 tokens</strong> para esta sesión.<br><br>Contacta al administrador para acceso renovado.</div></div></div>
 
 <div id="app" class="off">
   <nav id="sb">
@@ -181,7 +181,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);
     </div>
     <div class="sb-scroll" id="agl"></div>
     <div class="sb-foot">
-      <div class="tok-row"><span>Tokens usados</span><span id="tc">0 / 10,000</span></div>
+      <div class="tok-row"><span>Tokens usados</span><span id="tc">0 / 30,000</span></div>
       <div class="tok-bar"><div class="tok-fill" id="tf" style="width:0%"></div></div>
     </div>
   </nav>
@@ -204,7 +204,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);
         <textarea id="ui" rows="1" placeholder="Escribe tu consulta…" onkeydown="hk(event)" oninput="ar(this)"></textarea>
         <button id="send" onclick="snd()" title="Enviar"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
       </div>
-      <div class="hint">Enter envía · Shift+Enter nueva línea · Máx. 10,000 tokens/sesión</div>
+      <div class="hint">Enter envía · Shift+Enter nueva línea · Máx. 30,000 tokens/sesión</div>
     </div>
   </main>
 
@@ -219,7 +219,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);
 
 <script>
 const PWD="Kame$Ham3Ha#9000!";
-const MAX_TOK=10000;
+const MAX_TOK=30000;
 const API="/.netlify/functions/chat";
 
 const FACES={
@@ -1885,7 +1885,7 @@ const AGENTS=[
   {id:"04_DANIEL",name:"Daniel",role:"Cuentas por Cobrar",desc:"Analista · NIIF 9/7/15, aging, PCE",c:"var(--c04)",badge:"ANALISTA SENIOR",tier:"equipo",nivel:"Analista Senior",spec:["NIIF 9","Aging","Deterioro PCE","Cartera"],pers:"El sacerdote de las NIIF. Técnico, callado, preciso."},
   {id:"05_MARCELO",name:"Marcelo",role:"Compras y Contrataciones",desc:"Analista · Ley 47-25, licitaciones",c:"var(--c05)",badge:"ANALISTA SENIOR",tier:"equipo",nivel:"Analista Senior",spec:["Ley 47-25","Licitaciones","Fraccionamiento"],pers:"El supuesto ex mafioso. Cuando un proceso es demasiado perfecto, algo está mal."},
   {id:"06_BERTO",name:"Berto",role:"Tesorería y Pagos",desc:"Analista · Conciliaciones, pagos",c:"var(--c06)",badge:"ANALISTA SENIOR",tier:"equipo",nivel:"Analista Senior",spec:["Conciliación","Pagos","Transferencias","Flujo de caja"],pers:"El detective de las donas. Parece distraído hasta que algo no cuadra."},
-  {id:"07_VICTORIA",name:"Victoria",role:"Activos Fijos Estratégicos",desc:"Analista · NIC 16/36, bajas",c:"var(--c07)",badge:"ANALISTA SENIOR",tier:"equipo",nivel:"Analista Senior",spec:["NIC 16","NIC 36","Componentización","Deterioro"],pers:"La dama de hierro. Nunca pierde la compostura. Quirúrgica."},
+  {id:"07_VICTORIA",name:"Victoria",role:"Activos Fijos Estratégicos",desc:"Gerente · NIC 16/36, componentización",c:"var(--c07)",badge:"GERENTE SENIOR",tier:"lider",nivel:"Analista Senior",spec:["NIC 16","NIC 36","Componentización","Deterioro"],pers:"La dama de hierro. Nunca pierde la compostura. Quirúrgica."},
   {id:"08_DONA_CARMEN",name:"Doña Carmen",role:"Nómina y Personal",desc:"Analista · SASP, Ley 41-08, TSS",c:"var(--c08)",badge:"ANALISTA SENIOR",tier:"equipo",nivel:"Analista Senior",spec:["Nómina","SASP","TSS","Empleados fantasma"],pers:"La memoria viviente de ETED. Conoce a cada empleado de la empresa."},
   {id:"09_CLARA",name:"Clara",role:"Cuentas por Pagar",desc:"Analista · NIC 37, SIGEF, DGCP",c:"var(--c09)",badge:"ANALISTA SENIOR",tier:"equipo",nivel:"Analista Senior",spec:["NIC 37","Pasivos","SIGEF","Provisiones"],pers:"La genio ansiosa. Siempre cree que se equivocó. Casi nunca lo hace."},
   {id:"10_BRUNO",name:"Bruno",role:"Costos e Inventarios",desc:"Analista · NIC 2, conteos físicos",c:"var(--c10)",badge:"ANALISTA SENIOR",tier:"equipo",nivel:"Analista Senior",spec:["NIC 2","Inventarios","Conteos físicos","Costeo"],pers:"El desaparecido profesional. Detecta una diferencia y vuelve con todo resuelto."},
