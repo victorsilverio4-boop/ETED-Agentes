@@ -2102,8 +2102,8 @@ async function snd(){
       updTok();addMsg('agent',rep);
 
       // ── ORQUESTACIÓN ──────────────────────────────────────────────
-      const _citados=[...rep.matchAll(/\*{0,2}@?(\w+)\*{0,2}/g)]
-        .map(m=>m[1].toLowerCase())
+      const _citados=[...rep.matchAll(/(?:\*{0,2}@)(\w+)\*{0,2}|(?<!\w)@(\w+)/g)]
+        .map(m=>(m[1]||m[2]).toLowerCase())
         .filter(nombre=>AGENTS.some(a=>
           a.name.toLowerCase()===nombre||
           a.id.toLowerCase().includes(nombre)
