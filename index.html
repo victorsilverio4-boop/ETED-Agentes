@@ -2100,6 +2100,40 @@ async function snd(){
       Store.registrarActividad(cur.id,'consulta',txt.slice(0,80));
       toks+=(d.usage?.input_tokens||0)+(d.usage?.output_tokens||0);
       updTok();addMsg('agent',rep);
+
+      // ── ORQUESTACIÓN ──────────────────────────────────────────────
+      const _citados=[...rep.matchAll(/\*{0,2}@?(\w+)\*{0,2}/g)]
+        .map(m=>m[1].toLowerCase())
+        .filter(nombre=>AGENTS.some(a=>
+          a.name.toLowerCase()===nombre||
+          a.id.toLowerCase().includes(nombre)
+        ));
+      for(const nombre of [...new Set(_citados)]){
+        const agDel=AGENTS.find(a=>
+          a.name.toLowerCase()===nombre||
+          a.id.toLowerCase().includes(nombre)
+        );
+        if(!agDel||agDel.id===cur.id)continue;
+        addMsg('agent',`🔄 Consultando a **${agDel.name}**...`);
+        const histDel=Store.leerHistorial(agDel.id);
+        const tarea=`El agente ${cur.name} solicita tu ayuda con lo siguiente:\n\n${rep}`;
+        histDel.push({role:'user',content:tarea});
+        try{
+          const r2=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,
+              system:SP[agDel.id],messages:histDel})});
+          const d2=await r2.json();
+          if(!d2.error){
+            const rep2=d2.content?.[0]?.text||'...';
+            histDel.push({role:'assistant',content:rep2});
+            Store.guardarHistorial(agDel.id,histDel);
+            toks+=(d2.usage?.input_tokens||0)+(d2.usage?.output_tokens||0);
+            updTok();
+            addMsg('agent',`**${agDel.name}:** ${rep2}`);
+          }
+        }catch(e){addMsg('agent',`No pude contactar a ${agDel.name}.`);}
+      }
+      // ── FIN ORQUESTACIÓN ─────────────────────────────────────────
     }
   }catch(e){hideTyp();addMsg('agent','Error de conexión. Verifica la API.');}
   busy=false;document.getElementById('send').disabled=false;
